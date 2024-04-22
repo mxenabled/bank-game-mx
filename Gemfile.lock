@@ -1,0 +1,12 @@
+GEM
+  specs:
+    colorize (0.8.1)
+
+PLATFORMS
+  universal-java-1.8
+
+DEPENDENCIES
+  colorize
+
+BUNDLED WITH
+   2.3.13

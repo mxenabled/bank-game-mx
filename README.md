@@ -7,3 +7,6 @@ To write your own strategy all you need to do is follow the pattern of the `dumm
 
 ### Run the game
 You can run the game via bash with `./play.sh` or `ruby bank.rb`.
+
+### The data
+You can run any number of games in a series and it will calculate the win rate, score($$) at the end of the game, and the average placement_score which is calculated by how well you placed on the leaderboard (higher is better). See `bank.rb` to see how to run a GameSeries.

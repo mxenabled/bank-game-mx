@@ -1,3 +1,5 @@
+require 'colorize'
+
 require_relative "player"
 require_relative "round"
 require("pry")
@@ -7,7 +9,7 @@ class Game
   attr_accessor :previous_rounds
 
   # loads all the players from the players directory
-  def initialize(total_rounds = 15, slow_mode: false)
+  def initialize(total_rounds: 15, slow_mode: false)
     @players = []
     Dir["players/*.rb"].each do |file_path|
       file_name = File.basename(file_path, ".rb")
@@ -57,9 +59,13 @@ class Game
     game_summary_message if @slow_mode
   end
 
-  def game_summary
-    sorted_players = @players.sort_by { |player| player.score }.reverse
+  def summary
+    sorted_players = players_leader_board
     leader_board = sorted_players.each_with_index.map { |player, i| "#{i+1}: #{player.name} - #{player.score}" }
+  end
+
+  def players_leader_board
+    @players.sort_by { |player| player.score }.reverse
   end
 
   private
@@ -76,9 +82,9 @@ class Game
 
   def cash_out_message(players_out)
     return if players_out.empty?
-    puts "#{players_out.map(&:name).join(", ")} decided to cash out"
-    puts "Their score is locked in at:"
-    puts players_out.map { |player| "#{player.name}: #{player.score}"}
+    puts "#{players_out.map(&:name).join(", ")} decided to cash out".colorize(:green)
+    puts "Their score is locked in at:".colorize(:green)
+    puts players_out.map { |player| "#{player.name}: $#{player.score}".colorize(:green) }
     sleep(1.3)
   end
 
@@ -90,7 +96,7 @@ class Game
   end
 
   def new_round_message
-    puts "\nStarting round ##{@round_number} of #{@total_rounds}"
+    puts "\nStarting round ##{@round_number} of #{@total_rounds}".underline
   end
 
   def start_message
@@ -99,11 +105,11 @@ class Game
   end
 
   def roll_message
-    puts "Dice rolled are #{@current_round&.roll_history&.last&.first} and #{@current_round&.roll_history&.last&.last}"
+    puts "Dice rolled are " + "#{@current_round&.roll_history&.last&.first}".colorize(:light_blue) + " and " + "#{@current_round&.roll_history&.last&.last}".colorize(:light_blue)
     if @current_round&.roll_count > 3 && @current_round&.roll_history&.last.sum == 7
-      puts "Bust!"
+      puts "Bust!".colorize(:red)
     else
-      puts "The pot is #{@current_round&.pot_total}"
+      puts "The pot is " + "$#{@current_round&.pot_total}".colorize(:green).underline
     end
     sleep(1.3)
   end
