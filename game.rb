@@ -30,15 +30,13 @@ class Game
       roll_count: @current_round&.roll_count || 0,
       pot_total: @current_round&.pot_total || 0,
       last_roll: @current_round&.roll_history&.last,
-      players: [
-        @players.map do |player|
-          {
-            name: player.name,
-            score: player.score,
-            in_the_round: @current_round&.active_players&.include?(player)
-          }
-        end
-      ]
+      players: players_leader_board.map do |player|
+        {
+          name: player.name,
+          score: player.score,
+          in_the_round: @current_round&.active_players&.include?(player)
+        }
+      end
     }
   end
 
@@ -72,7 +70,7 @@ class Game
 
   def check_if_players_want_to_cash_out
     pre_roll_game_state = game_state
-    players_cashing_out = @current_round.active_players.select { |player| player.cash_out?(pre_roll_game_state) }
+    players_cashing_out = @current_round.active_players.select { |player| player._cash_out?(pre_roll_game_state) }
     players_cashing_out.each do |player|
       player.score += @current_round.pot_total
     end

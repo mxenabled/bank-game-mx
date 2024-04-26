@@ -5,27 +5,30 @@ class Dummy < ::Player
     super("Dummy")
   end
 
-  # Here is an example of the information you have available
-  # in game_state which you can use for your strategy.
   # {
   #   :total_rounds => 10,
-  #   :round_number => 5,
-  #   :roll_count => 3,
-  #   :pot_total => 145,
-  #   :last_roll => [3, 2],
-  #   :players=> [
-  #     [
-  #       {
-  #         :name => "Dummy",
-  #         :score=>524,
-  #         :in_the_round => true 
-  #       },
-  #       {
-  #         :name => "Lameo",
-  #         :score => 329,
-  #         :in_the_round => false
+  #   :round_number => 1,
+  #   :roll_count => 1,
+  #   :pot_total => 10,
+  #   :last_roll => [5, 5],
+  #   :players => [
+  #     { 
+  #       :name => "Lameo",
+  #       :score => 0,
+  #       :in_the_round => true
+  #     },
+  #     { 
+  #       :name => "Dummy",
+  #       :score => 0,
+  #       :in_the_round => true
   #       }
-  #     ]
+  #     ],
+  #   :other_players => [
+  #     {
+  #       :name => "Lameo",
+  #       :score => 0,
+  #       :in_the_round => true
+  #     }
   #   ]
   # }
 
@@ -37,4 +40,7 @@ class Dummy < ::Player
       return false
     end
   end
+
+  private
+  # Add any private methods to help with your strategy.
 end
