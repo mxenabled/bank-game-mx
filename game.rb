@@ -88,13 +88,15 @@ class Game
 
   def game_summary_message
     puts "\nGAME OVER"
-    sorted_players = @players.sort_by { |player| player.score }.reverse
     puts "Leaderboard:"
-    puts sorted_players.each_with_index.map { |player, i| "#{i+1}: #{player.name} - #{player.score}" }
+    puts players_leader_board.each_with_index.map { |player, i| "#{i+1}: #{player.name} - #{player.score}" }
   end
 
   def new_round_message
     puts "\nStarting round ##{@round_number} of #{@total_rounds}".underline
+    puts "Leaderboard:"
+    puts players_leader_board.each_with_index.map { |player, i| "#{i+1}: #{player.name} - #{player.score}" }
+    puts "-----------------------"
   end
 
   def start_message
