@@ -3,6 +3,7 @@ class Player
   attr_accessor :score
 
   def initialize(name)
+    raise "Name cannot be nil" if name.nil?
     @name = name
     @score = 0
   end

@@ -2,6 +2,7 @@ require "./player"
 
 class Dummy < ::Player
   def initialize
+    # Don't forget to set your name below
     super("Dummy")
   end
 
@@ -23,6 +24,8 @@ class Dummy < ::Player
   #       :in_the_round => true
   #       }
   #     ],
+  #   # other_players is all players other than yourself and it's in descending 
+  #   # order where the person currently winning is at the top.
   #   :other_players => [
   #     {
   #       :name => "Lameo",
