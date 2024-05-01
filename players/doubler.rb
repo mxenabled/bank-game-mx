@@ -19,14 +19,16 @@ class Doubler < ::Player
   def double_max_points?(game_state)
     players = game_state[:players]
     pot_total = game_state[:pot_total]
+    doubler_score = 0
     max_player = 0
 
     players.each do |player|
+      doubler_score = player[:score] if player[:name] == 'Doubler'
       score = player[:score]
       max_player = score > max_player ? score : max_player
     end
 
-    return true if pot_total > 2 * max_player
+    return true if doubler_score + pot_total > 2 * max_player
 
     false
   end
