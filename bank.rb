@@ -7,7 +7,7 @@ require_relative "game_series"
 # puts g1.summary
 
 # Run a game in slow mode to spectate the game in action
-g1 = Game.new(total_rounds: 10, slow_mode: true)
+g1 = Game.new(total_rounds: 10, slow_mode: false)
 g1.start
 puts g1.summary
 
